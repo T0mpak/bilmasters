@@ -18,17 +18,56 @@
       <div class="container1">
         <section class="our-news">
           <a href="news.php"><h1>Новости</h1></a>
-          <div class="news">
-            <div class="news-img"><img src="https://scontent-waw1-1.cdninstagram.com/v/t51.2885-19/s150x150/117899888_352594029068455_4962978409311692556_n.jpg?_nc_ht=scontent-waw1-1.cdninstagram.com&_nc_ohc=Aj0oniXpxdsAX_-byfo&oh=4c74ead30b3e7508e50f3d7e784a1466&oe=5F7B4F1B" alt="dota2"></div>
-            <a href="">
-            <h3 class="news-title">birgemiz_cup</h3>
-            </a>
-            <p class="news-content">Birgemiz Charity Debate Cup. Хочешь развить умение мыслить логически, расширить кругозор и сделать доброе дело? Мы объявляем о старте благотворительно-дебатного турнира «Birgemiz» для школьников 9-12 классов (не только Казахстан)</a>.</p>
-            <span class="">
-              <i><p>25.09.2020</p></i>
-            </span>
-          </div>
-          <div class="news">
+
+        <?php
+        $result = queryMysql("SELECT * FROM news ORDER BY newsDate DESC");
+        $num    = $result->num_rows;
+
+        for ($j = 0 ; $j < $num ; ++$j)
+        {
+          $image = $post = $text = $date = "";
+          $row   = $result->fetch_array(MYSQLI_NUM);
+          //$new_s_id = $row[0];
+          $image = $row[1];
+          $post  = $row[2];
+          $text  = $row[3];
+          $date  = $row[4];
+
+echo <<<_END
+<div class="news">
+
+
+<div class="news-img">
+      <img src="admin/uploads/$image" alt="$image">
+</div>
+
+
+<a href="">
+  <h3 class="news-title">
+      $post
+  </h3>
+</a>
+
+
+<p class="news-content">
+      $text
+</p>
+
+
+<span class="">
+  <i><p>
+      $date
+  </p></i>
+</span>
+
+
+</div>
+_END;
+
+        }
+        ?>
+
+          <!-- <div class="news">
             <div class="news-img"><img src="images/dota2-roster.jpg" alt="dota2"></div>
             <a href="">
             <h3 class="news-title">Обьявление о предстоящем турнире по DOTA2</h3>
@@ -58,7 +97,7 @@
             <span class="">
               <i><p>16.06.2020</p></i>
             </span>
-          </div>
+          </div> -->
       </section>
     </div>
 

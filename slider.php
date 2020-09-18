@@ -1,19 +1,32 @@
+<?php
+  $result = queryMysql("SELECT * FROM slider ORDER BY id DESC");
+  $rows = array();
+  for ($i=0; $i < 3; $i++) {
+    $row = $result->fetch_array(MYSQLI_NUM);
+    $rows[$i] = $row;
+    $rows[$i][3] = (strlen(strval($rows[$i][3])) >= 254) ? substr(strval($rows[$i][3]),0,251).'...' : strval($rows[$i][3]);
+  }
+  $coming  = $rows[0];
+  $current = $rows[1];
+  $past    = $rows[2];
+
+echo <<<_END
 <div class="slider">
   <div class="slider__wrapper">
     <div class="slider__items">
       <div class="slider__item slider__item_1">
         <span class="slider__item_inner">
           <span class="slider__item_img">
-            <img class="slider__item_photo" src="images/coming.png" alt="Coming event">
+            <img class="slider__item_photo" src="admin/uploads/$coming[1]" alt="Coming event">
           </span>
           <span class="slider__item_testimonial">
             <span class="slider__item_name">ПРИБЛИЖАЮЩИЕСЯ МЕРОПРИЯТИЕ</span>
-            <span class="slider__item_post">BIL Major 2020</span>
+            <span class="slider__item_post">$coming[2]</span>
             <span class="slider__item_text">
-              Дорогие друзья! Мы рады представить вам BIL Major 2020, первый за всю историю ...
+              $coming[3]
             </span>
             <span class="slider__item_action">
-              <a class="btn" href="news.php">Узнать больше!</a>
+              <a class="btn" href="tournaments.php">Узнать больше!</a>
             </span>
           </span>
         </span>
@@ -21,16 +34,16 @@
       <div class="slider__item slider__item_2">
         <span class="slider__item_inner">
           <span class="slider__item_img">
-            <img class="slider__item_photo" src="images/current.png" alt="Current event">
+            <img class="slider__item_photo" src="admin/uploads/$current[1]" alt="Current event">
           </span>
           <span class="slider__item_testimonial">
             <span class="slider__item_name">ТЕКУЩЕЕ &nbsp;&nbsp; МЕРОПРИЯТИЕ &nbsp;&nbsp;</span>
-            <span class="slider__item_post">На данный момент ничего нет :(</span>
+            <span class="slider__item_post">$current[2]</span>
             <span class="slider__item_text">
-              ...
+              $current[3]
             </span>
             <span class="slider__item_action">
-              <a class="btn" href="news.php">Узнать больше!</a>
+              <a class="btn" href="tournaments.php">Узнать больше!</a>
             </span>
           </span>
         </span>
@@ -38,16 +51,16 @@
       <div class="slider__item slider__item_3">
         <span class="slider__item_inner">
           <span class="slider__item_img">
-            <img class="slider__item_photo" src="images/past.png" alt="Past event">
+            <img class="slider__item_photo" src="admin/uploads/$past[1]" alt="Past event">
           </span>
           <span class="slider__item_testimonial">
             <span class="slider__item_name">ПРОШЕДШЕЕ МЕРОПРИЯТИЕ</span>
-            <span class="slider__item_post">Еще ни одно мероприятие не проводилось.</span>
+            <span class="slider__item_post">$past[2]</span>
             <span class="slider__item_text">
-              ...
+              $past[3]
             </span>
             <span class="slider__item_action">
-              <a class="btn" href="news.php">Узнать больше!</a>
+              <a class="btn" href="tournaments.php">Узнать больше!</a>
             </span>
           </span>
         </span>
@@ -276,3 +289,5 @@
       isAutoplay: true
     });
   </script>
+_END;
+?>

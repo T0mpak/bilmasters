@@ -61,6 +61,9 @@
       </nav>
       <a class="btn btn-outline-primary" href="https://discord.gg/ZKqmFr" style="padding: 10px; font-size: 0.8em; color: gold; border-color: red; font-weight: bold;">Запишись к нам на турнир!</a>
     </div>
+    <?php
+      require_once 'functions.php';
+    ?>
 
 
 
@@ -77,45 +80,55 @@
 
                       <!-- main content start -->
                       <section class="main-content col-md-12">
-                                                  <!-- blogpost start -->
+
+<!-- ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++blogpost start -->
+<?php
+  $result = queryMysql("SELECT * FROM tournaments ORDER BY toursDate DESC");
+  $num    = $result->num_rows;
+
+  for ($j = 0 ; $j < $num ; ++$j)
+  {
+    $image = $post = $text = $date = "";
+    $row   = $result->fetch_array(MYSQLI_NUM);
+    //$new_s_id = $row[0];
+    $image = $row[1];
+    $post  = $row[2];
+    $text  = $row[3];
+    $date  = $row[4];
+
+                      echo <<<_END
                               <article class="clearfix blogpost">
                                   <div class="blogpost-content clearfix news-chess">
 
                                       <div class="row">
                                           <div class="col-sm-6 col-xs-12">
                                               <a href="#" class="image-wrapper mask-wrapper">
-                                                  <img src="images/coming.png">
+                                                  <img src="admin/uploads/$image" alt="$image">
                                                       <span class="mask"><span class="triangle"><i class="fa fa-link"></i></span></span>
                                               </a>
                                           </div>
                                           <div class="col-sm-6 col-xs-12">
                                               <header>
-                                                  <h2><a href="#" class="">BIL Major 2020</a></h2>
+                                                  <h2><a href="#" class="">$post</a></h2>
                                               </header>
                                               <div class="post-info">
-                                          <span><i class="fa fa-calendar-o"></i>04 сентября 2020 г.</span>
+                                          <span><i class="fa fa-calendar-o"></i>$date</span>
                                               </div>
                                               <div class="blogpost-body">
-                                                  <p>Дорогие друзья! Мы рады представить вам BIL Major 2020, первый за всю историю чемпионат по Counter-Strike:Global Offensive среди Бiлiм-Инновация лицеев!
-                                                  Веришь, что именно ты и твои тиммейты играют в CS:GO лучше всех среди лицеев? Мы даём тебе право это проверить и посостязаться с другими по всему Казахстану!
-                                                  В нашем турнире есть взнос, из которых 80% пойдут на благотворительную помощь нуждающимся из-за пандемии COVID-19, а остальные 20% победителю.
-                                                  BIL Major 2020 будет проходить на платформе FACEIT, single-elimination, где начиная с матчей 1/4 финала матчи будут проходить в формате "Лучший из трёх" или ВО3.
-                                                  Требования для участия:
-                                                  -Быть учеником Бiлiм-Инновация лицея
-                                                  -Взнос с команды 2500тг
-                                                  -Капитанам команд иметь Discord
-                                                  -Всем участникам быть зарегистрированным на Faceit и иметь установленную Faceit Anti-Cheat
-
-                                                  GL&HF!</p>
+                                                  <p>$text</p>
                                               </div>
                                           </div>
                                       </div>
                                       <a href="#" class="btn btn-default more pull-right">Читать дальше</a>
                                   </div>
                               </article>
-                              <!-- blogpost end -->
-                                                  <!-- blogpost start -->
-                              <article class="clearfix blogpost">
+
+_END;
+}
+?>
+                              <!-- blogpost end ------------------------------------------------------------------------------------------>
+<!-- ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++blogpost start -->
+                              <!-- <article class="clearfix blogpost">
                                   <div class="blogpost-content clearfix news-chess">
 
                                       <div class="row">
@@ -139,10 +152,10 @@
                                       </div>
                                       <a href="#" class="btn btn-default more pull-right">Читать дальше</a>
                                   </div>
-                              </article>
-                              <!-- blogpost end -->
+                              </article> -->
+                              <!-- blogpost end ------------------------------------------------------------------------------------------>
                                                   <!-- blogpost start -->
-                              <article class="clearfix blogpost">
+                              <!-- <article class="clearfix blogpost">
                                   <div class="blogpost-content clearfix news-chess">
 
                                       <div class="row">
@@ -166,7 +179,7 @@
                                       </div>
                                       <a href="#" class="btn btn-default more pull-right">Читать дальше</a>
                                   </div>
-                              </article>
+                              </article> -->
                               <!-- blogpost end -->
                                           </section>
                       <!-- main content end -->

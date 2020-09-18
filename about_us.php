@@ -80,9 +80,9 @@ background-color: #555;
     </style>
   </head>
   <body>
-
     <?php
     require_once 'header.html';
+    require_once 'functions.php';
       ?>
 
     <div style="width: 98.90%; align: center; text-align: center; margin-left: 0.35%;">
@@ -94,20 +94,41 @@ background-color: #555;
 
       <h2 style="text-align:center">Наша Команда</h2>
       <div class="row">
+
+
+<?php
+      $result = queryMysql("SELECT * FROM ourteam ORDER BY role");
+      $num    = $result->num_rows;
+
+      for ($j = 0 ; $j < $num ; ++$j)
+      {
+        $image = $post = $text = $date = "";
+        $row   = $result->fetch_array(MYSQLI_NUM);
+        //$new_s_id = $row[0];
+        $image  = $row[1];
+        $post   = $row[2];
+        $text   = $row[3];
+        $email  = $row[4];
+
+echo <<<_END
         <div class="column">
           <div class="card">
-            <img src="images/1.png" alt="Danik" style="max-height: 520px; width: 100%;">
+            <img src="admin/uploads/$image" alt="$image" style="max-height: 520px; width: 100%;">
             <div class="container">
               <h2></h2>
-              <p class="title">CEO</p>
-              <p>Some text that describes me lorem ipsum ipsum lorem. Ну Даник это Даник.</p>
-              <p>danial.bakyt@gmail.com</p>
+              <p class="title">$post</p>
+              <p>$text</p>
+              <p>$email</p>
               <p><button class="button">Написать</button></p>
             </div>
           </div>
         </div>
+_END;
 
-        <div class="column">
+      }
+?>
+
+        <!-- <div class="column">
           <div class="card">
             <img src="images/2.png" alt="Alih" style="max-height: 520px; width: 100%;">
             <div class="container">
@@ -131,11 +152,11 @@ background-color: #555;
               <p><button class="button">Написать</button></p>
             </div>
           </div>
-        </div>
+        </div> -->
       </div>
 
 
-      <div class="row">
+      <!-- <div class="row">
         <div class="column">
           <div class="card">
             <img src="images/4.png" alt="Томпак" style="max-height: 520px; width: 100%;">
@@ -174,7 +195,7 @@ background-color: #555;
             </div>
           </div>
         </div>
-      </div>
+      </div> -->
     </div>
 
 
