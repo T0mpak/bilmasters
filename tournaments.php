@@ -6,7 +6,6 @@
     <meta name = "viewport" content = "width = device-width, initial-scale = 1">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Tournaments</title>
-
     <style>
     /*!
  * Bootstrap v3.2.0 (http://getbootstrap.com)
@@ -18,35 +17,43 @@
 		background: #f7f6f2 url(../images/old/01_main_bg_top.png) left top repeat-x !important;
 	}
 }
- @media (max-width:767px) {
-	body .page-wrapper {
-		background: #f7f6f2 url(../images/old/bg.png) left top repeat-x !important;
-	}
-	.mobilemarg {
-		margin-top:-39px;
-	}
-}
+   @media (max-width:767px) {
+  	body .page-wrapper {
+  		background: #f7f6f2 url(../images/old/bg.png) left top repeat-x !important;
+  	  }
+  	.mobilemarg {
+  		margin-top:-39px;
+      }
+    }
 
+    .my-news-container {
+      margin-bottom: 250px;
+    }
 
+    @media screen and (max-width: 769px) {
+      .my-news-container {
+        margin-bottom: 100px;
+        padding-bottom: 100px;
+      }
+    }
 
-.my-news-container {
-  margin-bottom: 250px;
-}
+    .my-min-img {
+    }
 
-@media screen and (max-width: 769px) {
-  .my-news-container {
-    margin-bottom: 100px;
-    padding-bottom: 100px;
-  }
-}
-
+    .my-min-img img {
+      display: block;
+      margin-left: auto;
+      margin-right: auto;
+      min-width: 66%;
+      text-align: center;
+      align-self: center;
+    }
     </style>
-
     <link rel="stylesheet" href="css/style.css" media="all">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
   </head>
-  <body>
 
+  <body>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"/>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     <div class="d-flex flex-column flex-md-row align-items-center p-3 px-md-4 mb-3 bg-white border-bottom shadow-sm">
@@ -65,135 +72,77 @@
       require_once 'functions.php';
     ?>
 
-
-
     <div class="my-news-container">
       <div class="section" style="background-color:#fff">
           <div class="main-content-wrapper">
             <div class="tour-h1">
-              <a href="tournaments.php"><h1 class="text-center">Турниры</h1></a>
+              <h1 class="text-center" style="display: inline; text-decoration: none;">Турниры</h1>
             </div>
               <div class="separator"></div>
 
               <div class="container">
                   <div class="row">
-
                       <!-- main content start -->
                       <section class="main-content col-md-12">
+                      <!-- blogpost start -->
+                      <?php
+                        $result = queryMysql("SELECT * FROM tournaments ORDER BY `id` DESC");
+                        $num    = $result->num_rows;
 
-<!-- ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++blogpost start -->
-<?php
-  $result = queryMysql("SELECT * FROM tournaments ORDER BY toursDate DESC");
-  $num    = $result->num_rows;
+                        for ($j = 0 ; $j < $num ; ++$j)
+                        {
+                          $image   = $title = $text = $date = "";
+                          $row     = $result->fetch_array(MYSQLI_NUM);
 
-  for ($j = 0 ; $j < $num ; ++$j)
-  {
-    $image = $post = $text = $date = "";
-    $row   = $result->fetch_array(MYSQLI_NUM);
-    //$new_s_id = $row[0];
-    $image = $row[1];
-    $post  = $row[2];
-    $text  = $row[3];
-    $date  = $row[4];
+                          $tours_id = $row[0];
+                          $image    = $row[1];
+                          $title    = $row[2];
+                          $text     = $row[3];
+                          $date     = $row[4];
 
-                      echo <<<_END
-                              <article class="clearfix blogpost">
-                                  <div class="blogpost-content clearfix news-chess">
-
-                                      <div class="row">
-                                          <div class="col-sm-6 col-xs-12">
-                                              <a href="#" class="image-wrapper mask-wrapper">
-                                                  <img src="admin/uploads/$image" alt="$image">
-                                                      <span class="mask"><span class="triangle"><i class="fa fa-link"></i></span></span>
-                                              </a>
-                                          </div>
-                                          <div class="col-sm-6 col-xs-12">
-                                              <header>
-                                                  <h2><a href="#" class="">$post</a></h2>
-                                              </header>
-                                              <div class="post-info">
-                                          <span><i class="fa fa-calendar-o"></i>$date</span>
-                                              </div>
-                                              <div class="blogpost-body">
-                                                  <p>$text</p>
-                                              </div>
-                                          </div>
-                                      </div>
-                                      <a href="#" class="btn btn-default more pull-right">Читать дальше</a>
-                                  </div>
-                              </article>
-
+                          echo <<<_END
+                                <article class="clearfix blogpost">
+                                    <div class="blogpost-content clearfix news-chess">
+                                        <div class="row">
+                                            <div class="col-sm-6 col-xs-12">
+                                                <a href="#" class="image-wrapper mask-wrapper my-min-img">
+                                                    <img src="admin/uploads/$image" alt="$image">
+                                                    <span class="mask">
+                                                    <span class="triangle"><i class="fa fa-link"></i></span>
+                                                    </span>
+                                                </a>
+                                            </div>
+                                            <div class="col-sm-6 col-xs-12">
+                                                <header>
+                                                    <h2><a href="#" class="">$title</a></h2>
+                                                </header>
+                                                <div class="post-info">
+                                                  <span><i class="fa fa-calendar-o"></i>$date</span>
+                                                </div>
+                                                <div class="blogpost-body">
+                                                    <p>$text</p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <a href="#" class="btn btn-default more pull-right">Читать дальше</a>
+                                    </div>
+                                </article>
 _END;
-}
+            }
 ?>
-                              <!-- blogpost end ------------------------------------------------------------------------------------------>
-<!-- ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++blogpost start -->
-                              <!-- <article class="clearfix blogpost">
-                                  <div class="blogpost-content clearfix news-chess">
-
-                                      <div class="row">
-                                          <div class="col-sm-6 col-xs-12">
-                                              <a href="#" class="image-wrapper mask-wrapper">
-                                                  <img src="images/current.png">
-                                                      <span class="mask"><span class="triangle"><i class="fa fa-link"></i></span></span>
-                                              </a>
-                                          </div>
-                                          <div class="col-sm-6 col-xs-12">
-                                              <header>
-                                                  <h2><a href="#" class="">BIL Chess Championship 2020</a></h2>
-                                              </header>
-                                              <div class="post-info">
-                                          <span><i class="fa fa-calendar-o"></i>30 сентября 2020 г.</span>
-                                              </div>
-                                              <div class="blogpost-body">
-                                                  <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
-                                              </div>
-                                          </div>
-                                      </div>
-                                      <a href="#" class="btn btn-default more pull-right">Читать дальше</a>
-                                  </div>
-                              </article> -->
-                              <!-- blogpost end ------------------------------------------------------------------------------------------>
-                                                  <!-- blogpost start -->
-                              <!-- <article class="clearfix blogpost">
-                                  <div class="blogpost-content clearfix news-chess">
-
-                                      <div class="row">
-                                          <div class="col-sm-6 col-xs-12">
-                                              <a href="#" class="image-wrapper mask-wrapper">
-                                                  <img src="images/past.png">
-                                                      <span class="mask"><span class="triangle"><i class="fa fa-link"></i></span></span>
-                                              </a>
-                                          </div>
-                                          <div class="col-sm-6 col-xs-12">
-                                              <header>
-                                                  <h2><a href="#" class="">BIL Detabe Season 1</a></h2>
-                                              </header>
-                                              <div class="post-info">
-                                          <span><i class="fa fa-calendar-o"></i>24 июля 2020 г.</span>
-                                              </div>
-                                              <div class="blogpost-body">
-                                                  <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
-                                              </div>
-                                          </div>
-                                      </div>
-                                      <a href="#" class="btn btn-default more pull-right">Читать дальше</a>
-                                  </div>
-                              </article> -->
-                              <!-- blogpost end -->
-                                          </section>
+                      <!-- blogpost end -->
+                      </section>
                       <!-- main content end -->
-
                   </div>
               </div>
           </div>
       </div>
     </div>
 
-      <div class="tournaments-footer">
+    <div class="tournaments-footer">
      <?php
-     require_once 'footer.html';
-      ?>
+      require_once 'footer.html';
+     ?>
     </div>
    </body>
  </html>

@@ -2,10 +2,8 @@
 <html lang="en" dir="ltr">
   <head>
     <meta charset="utf-8">
-    <title>Train your map-pool!</title>
-    <script src='jquery-3.2.1.min.js'></script>
+    <title>Train your map pool!</title>
     <script type="text/javascript" src="OSC.js"></script>
-
     <style>
     #mycanvas{
         display: flex;
@@ -38,7 +36,6 @@
       margin-right: 20px;
       text-shadow: 1px 1px blue;
     }
-
     </style>
 
   </head>
@@ -79,7 +76,7 @@
   </div>
 
 
-    <script type="text/javascript">
+    <script>
       function init() {
         var ctx = mycanvas.getContext('2d');
         var paint = false;
@@ -112,7 +109,6 @@
           ctx.lineWidth = this.lineWidth.value;
         }
       }
-
       init();
     </script>
 

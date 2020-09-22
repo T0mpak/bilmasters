@@ -49,7 +49,7 @@ if($validUser) {
   <?php require_once "header.html"; ?>
   <div class="divc">
   <form action="index.php" method="post">
-    <div style="margin: 4px 0px;"><label><b><i>USERNAME</i></b>&nbsp;&nbsp;&nbsp;(&nbsp;&nbsp;<b>admin</b>&nbsp;&nbsp;)&nbsp;:&nbsp;&nbsp;</label> <input type="text" value="<?= $_POST["un"] ?>" name="un" /></div>
+    <div style="margin: 4px 0px;"><label><b><i>USERNAME</i></b>&nbsp;&nbsp;&nbsp;(&nbsp;&nbsp;<b>admin</b>&nbsp;&nbsp;)&nbsp;&nbsp;:&nbsp;</label> <input type="text" value="<?= $_POST["un"] ?>" name="un" /></div>
     <br>
     <div style="margin: 4px 0px;"><label><b><i>PASSWORD</i></b>&nbsp;&nbsp;&nbsp;(&nbsp;&nbsp;<i>admin1</i>&nbsp;)&nbsp;&nbsp;:&nbsp;</label> <input type="password" name="pw" /></div>
     <br>

@@ -8,64 +8,56 @@
     <link rel="stylesheet" href="css/style.css" media="all">
     <title>News</title>
   </head>
+
   <body>
-
     <?php
-    require_once 'header.html';
-    require_once 'functions.php';
-      ?>
+      require_once 'header.html';
+      require_once 'functions.php';
+    ?>
 
-      <div class="container1">
-        <section class="our-news">
-          <a href="news.php"><h1>Новости</h1></a>
+    <div class="container1">
+      <section class="our-news">
+        <br>
+        <h2>НОВОСТИ</h2>
+        <br>
+      <?php
+      $result = queryMysql("SELECT * FROM news ORDER BY `date` DESC");
+      $num    = $result->num_rows;
 
-        <?php
-        $result = queryMysql("SELECT * FROM news ORDER BY newsDate DESC");
-        $num    = $result->num_rows;
+      for ($j = 0 ; $j < $num ; ++$j)
+      {
+        $image   = $title = $text = $date = "";
+        $row     = $result->fetch_array(MYSQLI_NUM);
 
-        for ($j = 0 ; $j < $num ; ++$j)
-        {
-          $image = $post = $text = $date = "";
-          $row   = $result->fetch_array(MYSQLI_NUM);
-          //$new_s_id = $row[0];
-          $image = $row[1];
-          $post  = $row[2];
-          $text  = $row[3];
-          $date  = $row[4];
+        $news_id = $row[0];
+        $image   = $row[1];
+        $title   = $row[2];
+        $text    = $row[3];
+        $date    = $row[4];
 
-echo <<<_END
-<div class="news">
+      echo <<<_END
+        <div class="news">
+        <div class="news-img">
+              <img src="admin/uploads/$image" alt="$image">
+        </div>
 
+        <h3 class="news-title">
+            $title
+        </h3>
 
-<div class="news-img">
-      <img src="admin/uploads/$image" alt="$image">
-</div>
+        <p class="news-content">
+              $text
+        </p>
 
-
-<a href="">
-  <h3 class="news-title">
-      $post
-  </h3>
-</a>
-
-
-<p class="news-content">
-      $text
-</p>
-
-
-<span class="">
-  <i><p>
-      $date
-  </p></i>
-</span>
-
-
-</div>
+        <span class="">
+          <i><p>
+              $date
+          </p></i>
+        </span>
+        </div>
 _END;
-
         }
-        ?>
+?>
 
           <!-- <div class="news">
             <div class="news-img"><img src="images/dota2-roster.jpg" alt="dota2"></div>
