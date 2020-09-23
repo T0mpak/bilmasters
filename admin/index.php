@@ -15,11 +15,14 @@ if($validUser) {
 }
 ?>
 
+
 <!DOCTYPE html>
-<html>
+<html lang="ru">
 <head>
   <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name = "viewport" content = "width = device-width, initial-scale = 1">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <link href = "https://code.jquery.com/ui/1.10.4/themes/ui-lightness/jquery-ui.css" rel = "stylesheet">
   <script src = "https://code.jquery.com/jquery-1.10.2.js"></script>
   <script src = "https://code.jquery.com/ui/1.10.4/jquery-ui.js"></script>
@@ -43,7 +46,7 @@ if($validUser) {
         margin: 15% auto;
     }
   </style>
-  <title>login to admin panel</title>
+  <title>Login to Admin's panel</title>
 </head>
 <body>
   <?php require_once "header.html"; ?>
