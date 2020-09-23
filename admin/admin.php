@@ -350,71 +350,70 @@
     }, false);
     </script>
   </head>
-  <body>
 
-    <br>
+  <body>
     <h3><b>Изменить "ПРИБЛИЖАЮЩИЕСЯ МЕРОПРИЯТИЕ" id=1</b></h3><br>
     <form action="admin.php" method="post" enctype="multipart/form-data">
     <span>Title</span><br>
-    <input type="text" size="100" name="slider-post" value="Пока ничего не намечается :("><br><br>
+    <input type="text" style="width: 100%; margin-right: 1%;" name="slider-post" value="Пока ничего не намечается :("><br><br>
     <span>Text</span><br>
     <textarea type="text" name="slider-text" value="slider-text"></textarea><br><br>
     <span>Image (DEFAULT = 'sad_smiley.png')</span><br>
     <input type="file" name="slider-image"><br><br>
 
-    <input type="submit" name="slider-submit1" value="Update FUTURE Slider" style="float: right; margin-right: 1%;"><br>
+    <input type="submit" name="slider-submit1" value="Update FUTURE Slider" style="float: right; margin-right: 1%;"><br><br>
   </form><br><br>
 
     <h3><b>Изменить "ТЕКУЩЕЕ МЕРОПРИЯТИЕ" id=2</b></h3><br>
     <form action="admin.php" method="post" enctype="multipart/form-data">
     <span>Title</span><br>
-    <input type="text" size="100" name="slider-post" value="На данный момент ничего нет :("><br><br>
+    <input type="text" style="width: 100%; margin-right: 1%;" name="slider-post" value="На данный момент ничего нет :("><br><br>
     <span>Text</span><br>
     <textarea type="text" name="slider-text" value="slider-text"></textarea><br><br>
     <span>Image (DEFAULT = 'sad_smiley.png')</span><br>
     <input type="file" name="slider-image"><br><br>
 
-    <input type="submit" name="slider-submit2" value="Update CURRENT Slider" style="float: right; margin-right: 1%;"><br>
+    <input type="submit" name="slider-submit2" value="Update CURRENT Slider" style="float: right; margin-right: 1%;"><br><br>
   </form><br><br>
 
     <h3><b>Изменить "ПРОШЕДШЕЕ МЕРОПРИЯТИЕ" id=3</b></h3><br>
     <form action="admin.php" method="post" enctype="multipart/form-data">
     <span>Title</span><br>
-    <input type="text" size="100" name="slider-post" value="Пока ничего не проводилось :("><br><br>
+    <input type="text" style="width: 100%; margin-right: 1%;" name="slider-post" value="Пока ничего не проводилось :("><br><br>
     <span>Text</span><br>
     <textarea type="text" name="slider-text" value="slider-text"></textarea><br><br>
     <span>Image (DEFAULT = 'sad_smiley.png')</span><br>
     <input type="file" name="slider-image"><br><br>
 
-    <input type="submit" name="slider-submit3" value="Update PAST Slider" style="float: right; margin-right: 1%;"><br>
+    <input type="submit" name="slider-submit3" value="Update PAST Slider" style="float: right; margin-right: 1%;"><br><br>
   </form><br>
 
 <hr><br>
     <h3><b>Добавить новую НОВОСТНУЮ запись</b></h3><br>
     <form action="admin.php" method="post" enctype="multipart/form-data">
     <span>Title</span><br>
-    <input type="text" name="news-title" value="news-title"><br><br>
+    <input type="text" style="width: 100%; margin-right: 1%;" name="news-title" value="news-title"><br><br>
     <span>Text</span><br>
     <textarea type="text" name="news-text" value="news-text"></textarea><br><br>
     <label for="news-date">Date:</label> <input type="date" id="news-date" name="news-date"><br><br>
     <span>Image (DEFAULT = 'sad_smiley.png')</span><br>
     <input type="file" name="news-image"><br><br>
 
-    <input type="submit" name="news-submit" value="Submit News" style="float: right; margin-right: 1%;"><br>
+    <input type="submit" name="news-submit" value="Submit News" style="float: right; margin-right: 1%;"><br><br>
   </form><br>
 
 <hr><br>
     <h3><b>Добавить новую ТУРНИРНУЮ запись</b></h3><br>
     <form action="admin.php" method="post" enctype="multipart/form-data">
     <span>Title</span><br>
-    <input type="text" name="tours-title" value="tournaments-title"><br><br>
+    <input type="text" style="width: 100%; margin-right: 1%;" name="tours-title" value="tournaments-title"><br><br>
     <span>Text</span><br>
     <textarea type="text" name="tours-text" value="Tournament's text"></textarea><br><br>
     <label for="tours-date">Date:</label> <input type="date" id="tours-date" name="tours-date"><br><br>
     <span>Image (DEFAULT = 'sad_smiley.png')</span><br>
     <input type="file" name="tours-image"><br><br>
 
-    <input type="submit" name="tournament-submit" value="Submit Tournament" style="float: right; margin-right: 1%;"><br>
-    </form>
+    <input type="submit" name="tournament-submit" value="Submit Tournament" style="float: right; margin-right: 1%;"><br><br>
+  </form><br>
   </body>
 </html>
